@@ -3,10 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { GridSetupComponent } from './components/configurable-editable-grid/grid-setup/grid-setup.component';
+import { GridComponent } from './components/configurable-editable-grid/grid/grid.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GridSetupComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
