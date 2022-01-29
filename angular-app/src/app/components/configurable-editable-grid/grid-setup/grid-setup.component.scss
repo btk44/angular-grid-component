@@ -1,0 +1,57 @@
+$primary-color: rgb(98, 98, 138);
+$primary-color-light: rgb(212, 212, 237);
+$border: 1px solid $primary-color;
+
+.grid-setup-container{
+    margin: 42px auto;
+    padding: 0 16px;
+    max-width: 960px;
+    align-items: center;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: $border;
+
+        th, td {
+            border-left: $border;
+            vertical-align: middle;
+            text-align: center;
+            padding: 10px;
+        }
+
+        th {
+            border-bottom: $border;
+            background-color: $primary-color;
+            font-weight: bold;
+            color: white;
+        }
+
+        .align-left {
+            text-align: left;
+        }
+
+        .odd-row{
+            background-color: $primary-color-light;
+        }
+    }
+
+    button {
+        border: $border;
+        border-color: $primary-color;
+        padding: 10px;
+        margin: 10px 0 10px 10px;
+        background-color: $primary-color;
+        min-width: 80px;
+        font-weight: bold;
+        color: white;
+        float: right;
+        cursor: pointer;
+
+        &:active {
+            color: $primary-color;
+            background-color: white;
+        }
+    }
+
+}

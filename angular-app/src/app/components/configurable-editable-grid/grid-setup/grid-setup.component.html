@@ -1,3 +1,19 @@
-<table>
-    <th *ngFor='let columnName of gridColumnSetupFieldNames'> {{ columnName }} </th>
-</table>
+<div class="grid-setup-container">
+    <table>
+        <tr>
+            <th><input type="checkbox"/></th>
+            <th class="align-left">Column name</th>
+            <th>Column type</th>
+            <th>Column align</th>
+        </tr>
+        <tr  *ngFor="let row of gridColumnSetupRows; let i=index;" [ngClass]="i % 2 !== 0 ? 'odd-row' : '' ">
+            <td><input type="checkbox"/></td>
+            <td class="align-left">{{ row.name }}</td>
+            <td>{{ row.type }}</td>
+            <td>{{ row.align }}</td>
+        </tr>
+    </table>
+
+    <button>Save</button>
+    <button>Add</button>
+</div>

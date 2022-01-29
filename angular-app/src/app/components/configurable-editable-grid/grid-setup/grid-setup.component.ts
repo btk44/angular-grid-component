@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GridColumnSetup, GridColumnSetupFieldNames } from '../grid-column-setup'
+import { GridColumnSetup } from '../grid-column-setup'
 
 @Component({
   selector: 'app-grid-setup',
@@ -8,11 +8,15 @@ import { GridColumnSetup, GridColumnSetupFieldNames } from '../grid-column-setup
 })
 export class GridSetupComponent implements OnInit {
 
-  gridColumnSetupFieldNames = GridColumnSetupFieldNames
+  gridColumnSetupRows: GridColumnSetup[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.gridColumnSetupRows.push({ name: 'Name', type: 'string', align: 'left', index: 0 });
+    this.gridColumnSetupRows.push({ name: 'Age', type: 'number', align: 'center', index: 1 });
+    this.gridColumnSetupRows.push({ name: 'Speaks English', type: 'boolean', align: 'center', index: 2 });
+    this.gridColumnSetupRows.push({ name: 'Interests', type: 'string', align: 'right', index: 3 });
   }
 
 }
