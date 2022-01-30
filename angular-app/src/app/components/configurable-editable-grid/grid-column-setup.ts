@@ -1,6 +1,7 @@
 export interface GridColumnSetup {
     name: string;
-    type: 'number' | 'string' | 'date' | 'boolean';
+    type: 'number' | 'string' | 'boolean';
     align: 'left' | 'right' | 'center';
     index: number;
+    defaultValue: unknown;
 }

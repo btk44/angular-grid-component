@@ -1,6 +1,9 @@
+@import '../../../app.component.scss';
+
 $primary-color: rgb(98, 98, 138);
 $primary-color-light: rgb(212, 212, 237);
 $border: 1px solid $primary-color;
+$cellPadding: 10px;
 
 .grid-setup-container{
     margin: 42px auto;
@@ -17,7 +20,7 @@ $border: 1px solid $primary-color;
             border-left: $border;
             vertical-align: middle;
             text-align: center;
-            padding: 10px;
+            padding: $cellPadding;
         }
 
         th {
@@ -27,6 +30,10 @@ $border: 1px solid $primary-color;
             color: white;
         }
 
+        .no-padding {
+            padding: 0;
+        }
+
         .align-left {
             text-align: left;
         }
@@ -34,12 +41,26 @@ $border: 1px solid $primary-color;
         .odd-row{
             background-color: $primary-color-light;
         }
+
+        .row-input {
+            border: 1px solid transparent;
+            outline: none;
+            padding: $cellPadding;
+            font-size: $fontSize;
+            width: 100%;
+            background-color: transparent;
+            box-sizing: border-box;
+
+            &:focus {
+                border-color: $primary-color-light;
+            }
+        }
     }
 
     button {
         border: $border;
         border-color: $primary-color;
-        padding: 10px;
+        padding: $cellPadding;
         margin: 10px 0 10px 10px;
         background-color: $primary-color;
         min-width: 80px;
@@ -53,5 +74,4 @@ $border: 1px solid $primary-color;
             background-color: white;
         }
     }
-
 }
