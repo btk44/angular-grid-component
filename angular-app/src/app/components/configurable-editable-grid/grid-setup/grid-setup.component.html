@@ -1,18 +1,23 @@
 <div class="grid-setup-container">
     <table>
         <tr>
-            <th><input type="checkbox"/></th>
+            <th><input type="checkbox" (change)="onSelectAll($event)"/></th>
             <th class="align-left">Column name</th>
             <th>Column type</th>
             <th>Column align</th>
-            <th>DefaultValue</th>
+            <th>Default value</th>
+            <th>Order</th>
         </tr>
         <tr  *ngFor="let row of gridColumnSetupRows; let i=index;" [ngClass]="i % 2 !== 0 ? 'odd-row' : '' ">
-            <td><input type="checkbox"/></td>
+            <td><input type="checkbox" [(ngModel)]="rowSelectionStatusArray[i]"/></td>
             <td class="align-left">{{ row.name }}</td>
             <td>{{ row.type }}</td>
             <td>{{ row.align }}</td>
             <td>{{ row.defaultValue }}</td>
+            <td>
+                <button class="mini" (click)="onMoveRow(row, -1)">&#8593;</button>
+                <button class="mini" (click)="onMoveRow(row, 1)">&#8595;</button>
+            </td>
         </tr>
         <tr *ngIf="addingModeOn">
             <td></td>
@@ -36,6 +41,6 @@
     </table>
 
     <button (click)="onSave()">Save</button>
-    <button>Remove</button>
+    <button (click)="onRemove()" *ngIf="!addingModeOn">Remove</button>
     <button (click)="onEditModeChange()">{{ addingModeOn ? 'Ok' : 'Add' }}</button>
 </div>

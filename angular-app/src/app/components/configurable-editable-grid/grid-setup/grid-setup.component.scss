@@ -73,5 +73,10 @@ $cellPadding: 10px;
             color: $primary-color;
             background-color: white;
         }
+
+        &.mini{
+            min-width: 10px;
+            margin: 1px;
+        }
     }
 }
