@@ -14,14 +14,22 @@ export class GridSetupComponent implements OnInit {
   allowedTypes = ['number', 'string', 'boolean'];
   allowedAligns = ['left', 'right', 'center'];
   rowSelectionStatusArray: boolean[] = [];
+  saveText = 'Save';
 
   constructor() {  }
 
   ngOnInit(): void {
-    this.gridColumnSetupRows.push({ name: 'Name', type: 'string', align: 'left', defaultValue: '_empty_' });
-    this.gridColumnSetupRows.push({ name: 'Age', type: 'number', align: 'center', defaultValue: 0 });
-    this.gridColumnSetupRows.push({ name: 'Speaks English', type: 'boolean', align: 'center', defaultValue: false });
-    this.gridColumnSetupRows.push({ name: 'Interests', type: 'string', align: 'right', defaultValue: '_empty_' });
+    let setupFromLocalStorage = JSON.parse(localStorage.getItem('grid-setup')?? '{}');
+
+    if(!setupFromLocalStorage.length){
+      this.gridColumnSetupRows.push({ name: 'Name', type: 'string', align: 'left', defaultValue: '_empty_' });
+      this.gridColumnSetupRows.push({ name: 'Age', type: 'number', align: 'center', defaultValue: 0 });
+      this.gridColumnSetupRows.push({ name: 'Speaks English', type: 'boolean', align: 'center', defaultValue: false });
+      this.gridColumnSetupRows.push({ name: 'Interests', type: 'string', align: 'right', defaultValue: '_empty_' });
+    } 
+    else {
+      this.gridColumnSetupRows = setupFromLocalStorage;
+    }
 
     this.rowSelectionStatusArray = new Array(this.gridColumnSetupRows.length).fill(false);
   }
@@ -67,12 +75,10 @@ export class GridSetupComponent implements OnInit {
   }
 
   onSave(): void {
-    // save to local storage
+    localStorage.setItem('grid-setup', JSON.stringify(this.gridColumnSetupRows));
+    this.saveText = 'Done!';
+    setTimeout(() => this.saveText = 'Save', 1500);
   }
 
-  // next: moving up and down to change index
-  // common scss variables
-  // removing selected rows (update indexes)
-  // save to local storage
-  
+  // common scss variables  
 }

@@ -40,7 +40,7 @@
         </tr>
     </table>
 
-    <button (click)="onSave()">Save</button>
+    <button (click)="onSave()">{{ saveText }}</button>
     <button (click)="onRemove()" *ngIf="!addingModeOn">Remove</button>
     <button (click)="onEditModeChange()">{{ addingModeOn ? 'Ok' : 'Add' }}</button>
 </div>
