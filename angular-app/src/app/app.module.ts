@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GridSetupComponent } from './components/configurable-editable-grid/grid-setup/grid-setup.component';
 import { GridComponent } from './components/configurable-editable-grid/grid/grid.component';
+import { GridRowComponent } from './components/configurable-editable-grid/grid/grid-row/grid-row.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GridSetupComponent,
-    GridComponent
+    GridComponent,
+    GridRowComponent
   ],
   imports: [
     BrowserModule,

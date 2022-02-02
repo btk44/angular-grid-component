@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GridColumnSetup } from '../grid-column-setup';
 
 @Component({
   selector: 'app-grid',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GridComponent implements OnInit {
 
+  gridColumnSetup: GridColumnSetup[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.gridColumnSetup = JSON.parse(localStorage.getItem('grid-setup')?? '{}');
+
   }
 
 }
