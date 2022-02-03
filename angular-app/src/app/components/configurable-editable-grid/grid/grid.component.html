@@ -1,3 +1,13 @@
 <div class="grid-container">
-
+    <table>
+        <tr>
+            <th *ngFor="let column of gridColumnSetup">{{ column.name }}</th>
+        </tr>
+        <tr app-grid-row 
+            *ngFor="let dataRow of gridRows; let i=index" 
+            [dataRow]="dataRow" 
+            [columnsSetup]="gridColumnSetup"
+            [ngClass]="i % 2 !== 0 ? 'odd-row' : '' "></tr>
+    </table>
+    <button (click)="onAddRow()">{{ addingModeOn ? 'Ok' : 'Add' }}</button>
 </div>

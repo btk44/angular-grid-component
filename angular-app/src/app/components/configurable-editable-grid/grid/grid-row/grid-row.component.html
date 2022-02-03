@@ -1,1 +1,8 @@
-<p>grid-row works!</p>
+<ng-container *ngFor="let column of columnsSetup">
+    <td *ngIf="!editMode">{{ dataRow[column.name] }}</td>
+    <td class="no-padding" *ngIf="editMode">
+        <input class="cell-input" 
+               [type]="inputTypeMap[column.type]" 
+               [(ngModel)]="dataRow[column.name]"/>
+    </td>
+</ng-container>

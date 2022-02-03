@@ -1,0 +1,26 @@
+@import '../../../../app.component.scss';
+
+td {
+    border-left: $border;
+    vertical-align: middle;
+    text-align: center;
+    padding: $cellPadding;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.cell-input {
+    border: 1px solid transparent;
+    outline: none;
+    padding: $cellPadding;
+    font-size: $fontSize;
+    width: 100%;
+    background-color: transparent;
+    box-sizing: border-box;
+
+    &:focus {
+        border-color: $primary-color-light;
+    }
+}

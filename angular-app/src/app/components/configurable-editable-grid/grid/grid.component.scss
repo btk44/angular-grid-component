@@ -1,0 +1,57 @@
+@import '../../../app.component.scss';
+
+.grid-container{
+    margin: 42px auto;
+    padding: 0 16px;
+    max-width: 960px;
+    align-items: center;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: $border;
+
+        th, td {
+            border-left: $border;
+            vertical-align: middle;
+            text-align: center;
+            padding: $cellPadding;
+        }
+
+        th {
+            border-bottom: $border;
+            background-color: $primary-color;
+            font-weight: bold;
+            color: white;
+        }
+
+        .odd-row{
+            background-color: $primary-color-light;
+        }
+
+
+    }
+
+    button {
+        border: $border;
+        border-color: $primary-color;
+        padding: $cellPadding;
+        margin: 10px 0 10px 10px;
+        background-color: $primary-color;
+        min-width: 80px;
+        font-weight: bold;
+        color: white;
+        float: right;
+        cursor: pointer;
+
+        &:active {
+            color: $primary-color;
+            background-color: white;
+        }
+
+        &.mini{
+            min-width: 10px;
+            margin: 1px;
+        }
+    }
+}
