@@ -1,6 +1,6 @@
 <ng-container *ngFor="let column of columnsSetup">
-    <td *ngIf="!editMode">{{ dataRow[column.name] }}</td>
-    <td class="no-padding" *ngIf="editMode">
+    <td *ngIf="!editModeOn">{{ dataRow[column.name] }}</td>
+    <td class="no-padding" *ngIf="editModeOn">
         <input class="cell-input" 
                [type]="inputTypeMap[column.type]" 
                [(ngModel)]="dataRow[column.name]"/>

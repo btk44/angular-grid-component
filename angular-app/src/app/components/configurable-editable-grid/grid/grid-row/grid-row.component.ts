@@ -10,8 +10,8 @@ export class GridRowComponent implements OnInit {
 
   @Input() dataRow: any;
   @Input() columnsSetup: GridColumnSetup[] = [];
-
-  editMode = false;
+  @Input() editModeOn: boolean = false;
+  
   inputTypeMap = { 'string' : 'text', 'number': 'number', 'boolean' : 'checkbox'}
 
   constructor() { }

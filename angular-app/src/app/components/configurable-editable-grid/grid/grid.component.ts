@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { GridColumnSetup } from '../grid-column-setup';
+import { GridRowComponent } from './grid-row/grid-row.component';
 
 @Component({
   selector: 'app-grid',
@@ -11,6 +12,9 @@ export class GridComponent implements OnInit {
   gridColumnSetup: GridColumnSetup[] = [];
   gridRows: any[] = [];
   addingModeOn: boolean = false;
+  newRow: any = [];
+
+  @ViewChildren(GridRowComponent) private gridRowsComponents!: QueryList<GridRowComponent>;
 
   constructor() { }
 
@@ -30,7 +34,18 @@ export class GridComponent implements OnInit {
     }
   }
 
+  onFocusLost(){
+     this.gridRowsComponents.forEach(grc => grc.editModeOn = false);
+     
+  }
+
+  onDoubleClick(){
+    this.gridRowsComponents.forEach(grc => grc.editModeOn = false);
+    this.addingModeOn = false;
+  }
+
   onAddRow(): void {
-      this.addingModeOn = !this.addingModeOn;
+    this.gridRowsComponents.forEach(grc => grc.editModeOn = false);
+    this.addingModeOn = !this.addingModeOn;
   }
 }

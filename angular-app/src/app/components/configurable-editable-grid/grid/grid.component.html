@@ -3,11 +3,19 @@
         <tr>
             <th *ngFor="let column of gridColumnSetup">{{ column.name }}</th>
         </tr>
-        <tr app-grid-row 
+        <tr app-grid-row #gridrow
             *ngFor="let dataRow of gridRows; let i=index" 
             [dataRow]="dataRow" 
             [columnsSetup]="gridColumnSetup"
-            [ngClass]="i % 2 !== 0 ? 'odd-row' : '' "></tr>
+            [ngClass]="i % 2 !== 0 ? 'odd-row' : '' "
+            [editModeOn]="false"
+            (dblclick)="onDoubleClick(); gridrow.editModeOn=true"></tr>
+        <tr app-grid-row
+            [dataRow]="newRow"
+            [columnsSetup]="gridColumnSetup"
+            [ngClass]="gridRows.length % 2 !== 0 ? 'odd-row' : '' "
+            [editModeOn]="true"
+            *ngIf="addingModeOn"></tr>
     </table>
     <button (click)="onAddRow()">{{ addingModeOn ? 'Ok' : 'Add' }}</button>
 </div>
