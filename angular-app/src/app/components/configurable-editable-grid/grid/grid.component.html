@@ -9,7 +9,10 @@
             [columnsSetup]="gridColumnSetup"
             [ngClass]="i % 2 !== 0 ? 'odd-row' : '' "
             [editModeOn]="false"
-            (dblclick)="onDoubleClick(); gridrow.editModeOn=true"></tr>
+            (dblclick)="onDoubleClick(); gridrow.editModeOn=true"
+            [tabindex]="i"
+            (keyup.enter)="onEscOrEnter(gridrow)"
+            (keyup.escape)="onEscOrEnter(gridrow)"></tr>
         <tr app-grid-row
             [dataRow]="newRow"
             [columnsSetup]="gridColumnSetup"

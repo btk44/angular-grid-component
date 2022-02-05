@@ -13,30 +13,24 @@ export class GridComponent implements OnInit {
   gridRows: any[] = [];
   addingModeOn: boolean = false;
   newRow: any = [];
+  saveText = 'Save';
 
   @ViewChildren(GridRowComponent) private gridRowsComponents!: QueryList<GridRowComponent>;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.gridColumnSetup = JSON.parse(localStorage.getItem('grid-setup')?? '{}') ?? [];
-    
-    // test
-    if(this.gridColumnSetup.length){
-      for(let i=0; i<6; i++){
-        let newRow: any = [];
-        for(let c=0; c<this.gridColumnSetup.length; c++){
-          newRow[this.gridColumnSetup[c].name] = 'test';
-        }
+    const columnSetupFromLS = JSON.parse(localStorage.getItem('grid-setup')?? '{}');
+    const gridDataFromLS =  JSON.parse(localStorage.getItem('grid-data')?? '{}');
 
-        this.gridRows.push(newRow);
-      }
-    }
+    this.gridColumnSetup = columnSetupFromLS.length ? columnSetupFromLS : [];
+    this.gridRows = gridDataFromLS.length ? gridDataFromLS : [];
+
+    this.resetNewRow();
   }
 
-  onFocusLost(){
-     this.gridRowsComponents.forEach(grc => grc.editModeOn = false);
-     
+  onEscOrEnter(gridRowComponent: GridRowComponent){
+     gridRowComponent.editModeOn = false;
   }
 
   onDoubleClick(){
@@ -47,5 +41,25 @@ export class GridComponent implements OnInit {
   onAddRow(): void {
     this.gridRowsComponents.forEach(grc => grc.editModeOn = false);
     this.addingModeOn = !this.addingModeOn;
+    if(!this.addingModeOn){
+      this.gridRows.push(this.newRow);
+      this.resetNewRow();
+    }
+  }
+
+  onSave(): void {
+    localStorage.setItem('grid-data', JSON.stringify(this.gridRows));
+    this.saveText = 'Done!';
+    setTimeout(() => this.saveText = 'Save', 1500); // make subject to debounce
+  }
+
+  resetNewRow(): Array<any> {
+    this.newRow = [];
+    
+    if(this.gridColumnSetup.length){
+      this.gridColumnSetup.forEach(gcs => this.newRow[gcs.name] = gcs.defaultValue);
+    }
+
+    return this.newRow;
   }
 }

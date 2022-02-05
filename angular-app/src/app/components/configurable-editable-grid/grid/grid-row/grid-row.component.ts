@@ -11,7 +11,7 @@ export class GridRowComponent implements OnInit {
   @Input() dataRow: any;
   @Input() columnsSetup: GridColumnSetup[] = [];
   @Input() editModeOn: boolean = false;
-  
+
   inputTypeMap = { 'string' : 'text', 'number': 'number', 'boolean' : 'checkbox'}
 
   constructor() { }

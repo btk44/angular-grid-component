@@ -9,7 +9,7 @@ import { GridColumnSetup } from '../grid-column-setup'
 export class GridSetupComponent implements OnInit {
 
   gridColumnSetupRows: GridColumnSetup[] = [];
-  newRow: GridColumnSetup = { name: '', type: 'string', align: 'left', defaultValue: '' };
+  newRow: GridColumnSetup = this.resetNewRow();
   addingModeOn = false;
   allowedTypes = ['number', 'string', 'boolean'];
   allowedAligns = ['left', 'right', 'center'];
@@ -34,8 +34,9 @@ export class GridSetupComponent implements OnInit {
     this.rowSelectionStatusArray = new Array(this.gridColumnSetupRows.length).fill(false);
   }
 
-  resetNewRow(): void {
+  resetNewRow(): GridColumnSetup {
     this.newRow = { name: '', type: 'string', align: 'left', defaultValue: '' };
+    return this.newRow;
   }
 
   onEditModeChange(): void {
