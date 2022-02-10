@@ -1,9 +1,19 @@
 <ng-container *ngFor="let column of columnsSetup">
-    <td *ngIf="!editModeOn">{{ dataRow[column.name] }}</td>
-    <td class="no-padding" *ngIf="editModeOn">
-        <input class="cell-input" #input
-               [type]="inputTypeMap[column.type]" 
+    <ng-container *ngIf="!editModeOn" [ngSwitch]="column.type">
+        <td *ngSwitchCase="dataTypeNames.Boolean">
+            <input class="cell-input" type="checkbox" [checked]="dataRow[column.name]" disabled/>
+        </td>
+        <td *ngSwitchDefault>{{ dataRow[column.name] }}</td>
+    </ng-container>
+    <td class="no-padding" *ngIf="editModeOn" [ngSwitch]="column.type">
+        <input *ngSwitchCase="dataTypeNames.Boolean"
+               class="cell-input" 
+               type="checkbox" 
+               [(ngModel)]="dataRow[column.name]"/>
+        <input *ngSwitchDefault
+               class="cell-input" #input
+               [type]="typeNameToInputTypeMap[column.type]" 
                [(ngModel)]="dataRow[column.name]"
-               (focus)="input.select()"/>
+               (focus)="input.select()"/> <!-- dynamic type works for text, number | not for checkbox for some reason -->
     </td>
 </ng-container>

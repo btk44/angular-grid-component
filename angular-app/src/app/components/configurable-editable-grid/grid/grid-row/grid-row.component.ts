@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GridColumnSetup } from '../../grid-column-setup';
+import { DataTypeNames, TypeNameToInputTypeMap } from '../grid-constants';
 
 @Component({
   selector: '[app-grid-row]',
@@ -12,7 +13,8 @@ export class GridRowComponent implements OnInit {
   @Input() columnsSetup: GridColumnSetup[] = [];
   @Input() editModeOn: boolean = false;
 
-  inputTypeMap = { 'string' : 'text', 'number': 'number', 'boolean' : 'checkbox'}
+  dataTypeNames = DataTypeNames;
+  typeNameToInputTypeMap = TypeNameToInputTypeMap;
 
   constructor() { }
 
