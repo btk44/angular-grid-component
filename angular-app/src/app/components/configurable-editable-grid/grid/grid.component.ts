@@ -36,6 +36,7 @@ export class GridComponent implements OnInit {
   onDoubleClick(){
     this.gridRowsComponents.forEach(grc => grc.editModeOn = false);
     this.addingModeOn = false;
+    this.resetNewRow();
   }
 
   onAddRow(): void {
@@ -45,6 +46,11 @@ export class GridComponent implements OnInit {
       this.gridRows.push(this.newRow);
       this.resetNewRow();
     }
+  }
+
+  onCancelAddRow(): void {
+    this.addingModeOn = false;
+    this.resetNewRow();
   }
 
   onSave(): void {

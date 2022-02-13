@@ -21,4 +21,5 @@
             *ngIf="addingModeOn"></tr>
     </table>
     <button (click)="onAddRow()">{{ addingModeOn ? 'Ok' : 'Add' }}</button>
+    <button *ngIf="addingModeOn" (click)="onCancelAddRow()">{{ 'Cancel' }}</button>
 </div>

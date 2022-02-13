@@ -4,6 +4,7 @@
             <input class="cell-input" type="checkbox" [checked]="dataRow[column.name]" disabled/>
         </td>
         <td *ngSwitchDefault>{{ dataRow[column.name] }}</td>
+        <!-- add more if needed -->
     </ng-container>
     <td class="no-padding" *ngIf="editModeOn" [ngSwitch]="column.type">
         <input *ngSwitchCase="dataTypeNames.Boolean"
@@ -15,5 +16,6 @@
                [type]="typeNameToInputTypeMap[column.type]" 
                [(ngModel)]="dataRow[column.name]"
                (focus)="input.select()"/> <!-- dynamic type works for text, number | not for checkbox for some reason -->
+        <!-- add more if needed -->
     </td>
 </ng-container>
