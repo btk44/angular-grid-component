@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GridColumnSetup } from '../grid-column-setup'
+import { GridColumnSetup } from '../../components/configurable-editable-grid/grid-column-setup'
 
 @Component({
   selector: 'app-grid-setup',

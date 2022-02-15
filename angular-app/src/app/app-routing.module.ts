@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GridSetupComponent } from './components/configurable-editable-grid/grid-setup/grid-setup.component';
-import { GridComponent } from './components/configurable-editable-grid/grid/grid.component';
+import { GridSetupComponent } from './pages/grid-setup/grid-setup.component';
+import { GridGeneratedComponent } from './pages/grid-generated/grid-generated.component';
 
 const routes: Routes = [
   { path: 'grid-setup', component: GridSetupComponent },
-  { path: 'grid', component: GridComponent }
+  { path: 'grid-generated', component: GridGeneratedComponent }
 ];
 
 @NgModule({

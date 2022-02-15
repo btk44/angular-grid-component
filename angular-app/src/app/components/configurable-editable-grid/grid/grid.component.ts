@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { GridColumnSetup } from '../grid-column-setup';
 import { GridRowComponent } from './grid-row/grid-row.component';
 
@@ -9,8 +9,9 @@ import { GridRowComponent } from './grid-row/grid-row.component';
 })
 export class GridComponent implements OnInit {
 
-  gridColumnSetup: GridColumnSetup[] = [];
-  gridRows: any[] = [];
+  @Input() gridColumnSetup: GridColumnSetup[] = [];
+  @Input() gridRows: any[] = [];
+  
   addingModeOn: boolean = false;
   newRow: any = [];
   saveText = 'Save';
@@ -20,12 +21,6 @@ export class GridComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const columnSetupFromLS = JSON.parse(localStorage.getItem('grid-setup')?? '{}');
-    const gridDataFromLS =  JSON.parse(localStorage.getItem('grid-data')?? '{}');
-
-    this.gridColumnSetup = columnSetupFromLS.length ? columnSetupFromLS : [];
-    this.gridRows = gridDataFromLS.length ? gridDataFromLS : [];
-
     this.resetNewRow();
   }
 
