@@ -11,10 +11,11 @@ export class GridComponent implements OnInit {
 
   @Input() gridColumnSetup: GridColumnSetup[] = [];
   @Input() gridRows: any[] = [];
-  
+
   addingModeOn: boolean = false;
   newRow: any = [];
   saveText = 'Save';
+  isCheckedAll = false;
 
   @ViewChildren(GridRowComponent) private gridRowsComponents!: QueryList<GridRowComponent>;
 
@@ -48,10 +49,15 @@ export class GridComponent implements OnInit {
     this.resetNewRow();
   }
 
-  onSave(): void {
-    localStorage.setItem('grid-data', JSON.stringify(this.gridRows));
-    this.saveText = 'Done!';
-    setTimeout(() => this.saveText = 'Save', 1500); // make subject to debounce
+  onSelectAll($event: any): void {
+    this.isCheckedAll = $event.target.checked;
+    this.gridRowsComponents.forEach(grc => grc.isSelected = $event.target.checked);
+  }
+
+  onRemoveRows(): void {
+    let rowsToRemove = this.gridRowsComponents.filter(grc => grc.isSelected).map(grc => grc.dataRow);
+    this.gridRows = this.gridRows.filter(gr => rowsToRemove.indexOf(gr) === -1);
+    this.isCheckedAll = false;
   }
 
   resetNewRow(): Array<any> {

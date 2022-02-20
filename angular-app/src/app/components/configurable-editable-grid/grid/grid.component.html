@@ -1,6 +1,7 @@
 <div class="grid-container">
     <table>
         <tr>
+            <th><input type="checkbox" [checked]="isCheckedAll" (change)="onSelectAll($event)"/></th>
             <th *ngFor="let column of gridColumnSetup">{{ column.name }}</th>
         </tr>
         <tr app-grid-row #gridrow
@@ -22,4 +23,5 @@
     </table>
     <button (click)="onAddRow()">{{ addingModeOn ? 'Ok' : 'Add' }}</button>
     <button *ngIf="addingModeOn" (click)="onCancelAddRow()">{{ 'Cancel' }}</button>
+    <button *ngIf="!addingModeOn" (click)="onRemoveRows()">Remove</button>
 </div>

@@ -12,7 +12,8 @@ export class GridRowComponent implements OnInit {
   @Input() dataRow: any;
   @Input() columnsSetup: GridColumnSetup[] = [];
   @Input() editModeOn: boolean = false;
-
+  
+  isSelected: boolean = false;
   dataTypeNames = DataTypeNames;
   typeNameToInputTypeMap = TypeNameToInputTypeMap;
 
