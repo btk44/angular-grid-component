@@ -8,75 +8,46 @@ import { GridColumnSetup } from '../../components/configurable-editable-grid/gri
 })
 export class GridSetupComponent implements OnInit {
 
-  gridColumnSetupRows: GridColumnSetup[] = [];
-  newRow: GridColumnSetup = this.resetNewRow();
-  addingModeOn = false;
+  columnsSetup: GridColumnSetup[] = [];
+
   allowedTypes = ['number', 'string', 'boolean'];
   allowedAligns = ['left', 'right', 'center'];
-  rowSelectionStatusArray: boolean[] = [];
   saveText = 'Save';
 
-  constructor() {  }
+  setupDataRows: Array<GridColumnSetup> = [];
+
+  constructor() { 
+    this.columnsSetup = [
+      { name: 'name', type: 'string', align: 'left', defaultValue: '_empty' },
+      { name: 'type', type: 'string', align: 'left', defaultValue: '_empty' },
+      { name: 'align', type: 'string', align: 'left', defaultValue: '_empty' },
+      { name: 'defaultValue', type: 'string', align: 'left', defaultValue: '_empty' }
+    ]
+  }
 
   ngOnInit(): void {
-    let setupFromLocalStorage = JSON.parse(localStorage.getItem('grid-setup')?? '{}');
+    let setupDataRowsFromLS = JSON.parse(localStorage.getItem('grid-setup-data')?? '{}');
 
-    if(!setupFromLocalStorage.length){
-      this.gridColumnSetupRows.push({ name: 'Name', type: 'string', align: 'left', defaultValue: '_empty_' });
-      this.gridColumnSetupRows.push({ name: 'Age', type: 'number', align: 'center', defaultValue: 0 });
-      this.gridColumnSetupRows.push({ name: 'Speaks English', type: 'boolean', align: 'center', defaultValue: false });
-      this.gridColumnSetupRows.push({ name: 'Interests', type: 'string', align: 'right', defaultValue: '_empty_' });
-    } 
-    else {
-      this.gridColumnSetupRows = setupFromLocalStorage;
+    if(setupDataRowsFromLS.length){
+      this.setupDataRows = setupDataRowsFromLS;
     }
-
-    this.rowSelectionStatusArray = new Array(this.gridColumnSetupRows.length).fill(false);
-  }
-
-  resetNewRow(): GridColumnSetup {
-    this.newRow = { name: '', type: 'string', align: 'left', defaultValue: '' };
-    return this.newRow;
-  }
-
-  onEditModeChange(): void {
-    this.addingModeOn = !this.addingModeOn;
-    if(!this.addingModeOn){
-      this.gridColumnSetupRows.push(this.newRow);
-      this.rowSelectionStatusArray.push(false);
-    }
-
-    this.resetNewRow();
-  }
-
-  onSelectAll($event: any): void {
-    this.rowSelectionStatusArray.fill($event.target.checked);
   }
 
   onMoveRow(row: GridColumnSetup, direction: -1 | 1): void {
-    let selectedRowIndex = this.gridColumnSetupRows.indexOf(row);
-    let rowToSwapIndex = selectedRowIndex + direction;
-    if(rowToSwapIndex < 0 || 
-       rowToSwapIndex >= this.gridColumnSetupRows.length){
-      return;
-    }
+    // let selectedRowIndex = this.columnsSetup.indexOf(row);
+    // let rowToSwapIndex = selectedRowIndex + direction;
+    // if(rowToSwapIndex < 0 || 
+    //    rowToSwapIndex >= this.columnsSetup.length){
+    //   return;
+    // }
 
-    let tmpRow = this.gridColumnSetupRows[rowToSwapIndex];
-    this.gridColumnSetupRows[rowToSwapIndex] = this.gridColumnSetupRows[selectedRowIndex];
-    this.gridColumnSetupRows[selectedRowIndex] = tmpRow;
-  }
-
-  onRemove(): void {
-    let previousLenth = this.gridColumnSetupRows.length;
-    this.gridColumnSetupRows = this.gridColumnSetupRows.filter((gcsr, index) => !this.rowSelectionStatusArray[index]);
-    for(let i=0; i < previousLenth - this.gridColumnSetupRows.length; i++){
-      this.rowSelectionStatusArray.pop();
-    }
-    this.rowSelectionStatusArray.fill(false);
+    // let tmpRow = this.columnsSetup[rowToSwapIndex];
+    // this.columnsSetup[rowToSwapIndex] = this.columnsSetup[selectedRowIndex];
+    // this.columnsSetup[selectedRowIndex] = tmpRow;
   }
 
   onSave(): void {
-    localStorage.setItem('grid-setup', JSON.stringify(this.gridColumnSetupRows));
+    localStorage.setItem('grid-setup-data', JSON.stringify(this.setupDataRows));
     this.saveText = 'Done!';
     setTimeout(() => this.saveText = 'Save', 1500);
   }

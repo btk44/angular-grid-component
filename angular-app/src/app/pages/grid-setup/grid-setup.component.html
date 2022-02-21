@@ -1,46 +1,4 @@
 <div class="grid-setup-container">
-    <table>
-        <tr>
-            <th><input type="checkbox" (change)="onSelectAll($event)"/></th>
-            <th class="align-left">Column name</th>
-            <th>Column type</th>
-            <th>Column align</th>
-            <th>Default value</th>
-            <th>Order</th>
-        </tr>
-        <tr  *ngFor="let row of gridColumnSetupRows; let i=index;" [ngClass]="i % 2 !== 0 ? 'odd-row' : '' ">
-            <td><input type="checkbox" [(ngModel)]="rowSelectionStatusArray[i]"/></td>
-            <td class="align-left">{{ row.name }}</td>
-            <td>{{ row.type }}</td>
-            <td>{{ row.align }}</td>
-            <td>{{ row.defaultValue }}</td>
-            <td>
-                <button class="mini" (click)="onMoveRow(row, -1)">&#8593;</button>
-                <button class="mini" (click)="onMoveRow(row, 1)">&#8595;</button>
-            </td>
-        </tr>
-        <tr *ngIf="addingModeOn">
-            <td></td>
-            <td class="align-left no-padding">
-                <input class="row-input" type="text" [(ngModel)]="newRow.name"/>
-            </td>
-            <td class="no-padding">
-                <select class="row-input" [(ngModel)]="newRow.type">
-                    <option *ngFor="let type of allowedTypes" [ngValue]="type">{{ type }}</option>
-                </select>
-            </td>
-            <td class="no-padding">
-                <select class="row-input" [(ngModel)]="newRow.align">
-                    <option *ngFor="let align of allowedAligns" [ngValue]="align">{{ align }}</option>
-                </select>
-            </td>
-            <td class="align-left no-padding">
-                <input class="row-input" type="text" [(ngModel)]="newRow.defaultValue"/>
-            </td>
-        </tr>
-    </table>
-
+    <app-grid [columnsSetupIn]="columnsSetup" [(dataRowsIn)]="setupDataRows"></app-grid>
     <button (click)="onSave()">{{ saveText }}</button>
-    <button (click)="onRemove()" *ngIf="!addingModeOn">Remove</button>
-    <button (click)="onEditModeChange()">{{ addingModeOn ? 'Ok' : 'Add' }}</button>
 </div>

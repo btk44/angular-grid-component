@@ -2,12 +2,12 @@
     <table>
         <tr>
             <th><input type="checkbox" [checked]="isCheckedAll" (change)="onSelectAll($event)"/></th>
-            <th *ngFor="let column of gridColumnSetup">{{ column.name }}</th>
+            <th *ngFor="let column of columnsSetupIn">{{ column.name }}</th>
         </tr>
         <tr app-grid-row #gridrow
-            *ngFor="let dataRow of gridRows; let i=index" 
+            *ngFor="let dataRow of dataRowsIn; let i=index" 
             [dataRow]="dataRow" 
-            [columnsSetup]="gridColumnSetup"
+            [columnsSetup]="columnsSetupIn"
             [ngClass]="i % 2 !== 0 ? 'odd-row' : '' "
             [editModeOn]="false"
             (dblclick)="onDoubleClick(); gridrow.editModeOn=true"
@@ -15,9 +15,9 @@
             (keyup.enter)="onEscOrEnter(gridrow)"
             (keyup.escape)="onEscOrEnter(gridrow)"></tr>
         <tr app-grid-row
-            [dataRow]="newRow"
-            [columnsSetup]="gridColumnSetup"
-            [ngClass]="gridRows.length % 2 !== 0 ? 'odd-row' : '' "
+            [(dataRow)]="newRow"
+            [columnsSetup]="columnsSetupIn"
+            [ngClass]="dataRowsIn.length % 2 !== 0 ? 'odd-row' : '' "
             [editModeOn]="true"
             *ngIf="addingModeOn"></tr>
     </table>

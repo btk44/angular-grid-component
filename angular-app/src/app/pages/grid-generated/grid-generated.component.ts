@@ -8,17 +8,17 @@ import { GridColumnSetup } from 'src/app/components/configurable-editable-grid/g
 })
 export class GridGeneratedComponent implements OnInit {
 
-  gridColumnSetup: GridColumnSetup[] = [];
-  gridRows: any[] = [];
+  columnsSetup: GridColumnSetup[] = [];
+  dataRows: any[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    const columnSetupFromLS = JSON.parse(localStorage.getItem('grid-setup')?? '{}');
-    const gridDataFromLS =  JSON.parse(localStorage.getItem('grid-data')?? '{}');
+    const columnsSetupFromLS = JSON.parse(localStorage.getItem('grid-setup-data')?? '{}');
+    const dataRowsFromLS =  JSON.parse(localStorage.getItem('grid-data')?? '{}');
 
-    this.gridColumnSetup = columnSetupFromLS.length ? columnSetupFromLS : [];
-    this.gridRows = gridDataFromLS.length ? gridDataFromLS : [];
+    this.columnsSetup = columnsSetupFromLS.length ? columnsSetupFromLS : [];
+    this.dataRows = dataRowsFromLS.length ? dataRowsFromLS : [];
   }
 
 }

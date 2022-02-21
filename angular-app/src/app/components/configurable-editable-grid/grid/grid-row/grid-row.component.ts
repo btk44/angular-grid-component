@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GridColumnSetup } from '../../grid-column-setup';
 import { DataTypeNames, TypeNameToInputTypeMap } from '../grid-constants';
 
@@ -9,9 +9,10 @@ import { DataTypeNames, TypeNameToInputTypeMap } from '../grid-constants';
 })
 export class GridRowComponent implements OnInit {
 
-  @Input() dataRow: any;
   @Input() columnsSetup: GridColumnSetup[] = [];
   @Input() editModeOn: boolean = false;
+  @Input() dataRow: any;
+  @Output() dataRowChange = new EventEmitter();
   
   isSelected: boolean = false;
   dataTypeNames = DataTypeNames;
@@ -21,5 +22,4 @@ export class GridRowComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
