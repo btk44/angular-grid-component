@@ -17,6 +17,7 @@ export class GridComponent implements OnInit {
   newRow: any = {};
   saveText = 'Save';
   isCheckedAll = false;
+  isAnyRowSelected = false;
 
   @ViewChildren(GridRowComponent) private gridRowsComponents!: QueryList<GridRowComponent>;
 
@@ -43,6 +44,24 @@ export class GridComponent implements OnInit {
       this.dataRowsIn.push(this.newRow);
       this.resetNewRow();
     }
+    this.onSelectAll({target: {checked: false}});
+  }
+
+  onRowSelectionChange(): void {
+    this.isAnyRowSelected = this.gridRowsComponents.some(grc => grc.isSelected);
+  }
+
+  onMoveRow(row: GridColumnSetup, direction: -1 | 1): void {
+    // let selectedRowIndex = this.columnsSetup.indexOf(row);
+    // let rowToSwapIndex = selectedRowIndex + direction;
+    // if(rowToSwapIndex < 0 || 
+    //    rowToSwapIndex >= this.columnsSetup.length){
+    //   return;
+    // }
+
+    // let tmpRow = this.columnsSetup[rowToSwapIndex];
+    // this.columnsSetup[rowToSwapIndex] = this.columnsSetup[selectedRowIndex];
+    // this.columnsSetup[selectedRowIndex] = tmpRow;
   }
 
   onCancelAddRow(): void {
@@ -53,6 +72,7 @@ export class GridComponent implements OnInit {
   onSelectAll($event: any): void {
     this.isCheckedAll = $event.target.checked;
     this.gridRowsComponents.forEach(grc => grc.isSelected = $event.target.checked);
+    this.onRowSelectionChange();
   }
 
   onRemoveRows(): void {

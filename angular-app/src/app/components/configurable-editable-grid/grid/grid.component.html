@@ -6,14 +6,15 @@
         </tr>
         <tr app-grid-row #gridrow
             *ngFor="let dataRow of dataRowsIn; let i=index" 
-            [dataRow]="dataRow" 
+            [dataRow]="dataRow"
             [columnsSetup]="columnsSetupIn"
             [ngClass]="i % 2 !== 0 ? 'odd-row' : '' "
             [editModeOn]="false"
             (dblclick)="onDoubleClick(); gridrow.editModeOn=true"
             [tabindex]="i"
             (keyup.enter)="onEscOrEnter(gridrow)"
-            (keyup.escape)="onEscOrEnter(gridrow)"></tr>
+            (keyup.escape)="onEscOrEnter(gridrow)"
+            (selectionChange)="onRowSelectionChange()"></tr>
         <tr app-grid-row
             [(dataRow)]="newRow"
             [columnsSetup]="columnsSetupIn"
@@ -24,4 +25,6 @@
     <button (click)="onAddRow()">{{ addingModeOn ? 'Ok' : 'Add' }}</button>
     <button *ngIf="addingModeOn" (click)="onCancelAddRow()">{{ 'Cancel' }}</button>
     <button *ngIf="!addingModeOn" (click)="onRemoveRows()">Remove</button>
+    <button *ngIf="isAnyRowSelected">Move up</button>
+    <button *ngIf="isAnyRowSelected">Move down</button>
 </div>

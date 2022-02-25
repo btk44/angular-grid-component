@@ -1,4 +1,4 @@
-<td><input type="checkbox" [(ngModel)]="isSelected"/></td>
+<td><input type="checkbox" [(ngModel)]="isSelected" (change)="onSelectionChange()"/></td>
 <ng-container *ngFor="let column of columnsSetup">
     <ng-container *ngIf="!editModeOn" [ngSwitch]="column.type">
         <td *ngSwitchCase="dataTypeNames.Boolean">

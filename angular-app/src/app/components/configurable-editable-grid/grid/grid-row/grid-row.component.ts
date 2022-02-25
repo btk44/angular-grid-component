@@ -13,6 +13,7 @@ export class GridRowComponent implements OnInit {
   @Input() editModeOn: boolean = false;
   @Input() dataRow: any;
   @Output() dataRowChange = new EventEmitter();
+  @Output() selectionChange = new EventEmitter();
   
   isSelected: boolean = false;
   dataTypeNames = DataTypeNames;
@@ -21,5 +22,9 @@ export class GridRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSelectionChange(): void {
+    this.selectionChange.emit();
   }
 }

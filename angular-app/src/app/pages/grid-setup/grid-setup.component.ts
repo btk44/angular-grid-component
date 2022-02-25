@@ -33,19 +33,6 @@ export class GridSetupComponent implements OnInit {
     }
   }
 
-  onMoveRow(row: GridColumnSetup, direction: -1 | 1): void {
-    // let selectedRowIndex = this.columnsSetup.indexOf(row);
-    // let rowToSwapIndex = selectedRowIndex + direction;
-    // if(rowToSwapIndex < 0 || 
-    //    rowToSwapIndex >= this.columnsSetup.length){
-    //   return;
-    // }
-
-    // let tmpRow = this.columnsSetup[rowToSwapIndex];
-    // this.columnsSetup[rowToSwapIndex] = this.columnsSetup[selectedRowIndex];
-    // this.columnsSetup[selectedRowIndex] = tmpRow;
-  }
-
   onSave(): void {
     localStorage.setItem('grid-setup-data', JSON.stringify(this.setupDataRows));
     this.saveText = 'Done!';
