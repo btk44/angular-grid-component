@@ -13,6 +13,7 @@ export class GridSetupComponent implements OnInit {
   allowedTypes = ['number', 'string', 'boolean'];
   allowedAligns = ['left', 'right', 'center'];
   saveText = 'Save';
+  saveBlocked = false;
 
   setupDataRows: Array<GridColumnSetup> = [];
 
@@ -35,10 +36,12 @@ export class GridSetupComponent implements OnInit {
   }
 
   onSave(): void {
+    this.saveBlocked = true;
     localStorage.setItem('grid-setup-data', JSON.stringify(this.setupDataRows));
-    this.saveText = 'Done!';
-    setTimeout(() => this.saveText = 'Save', 1500);
+    this.saveText = 'Saving...';
+    setTimeout(() => { 
+      this.saveText = 'Save';
+      this.saveBlocked = false;
+    }, 1500);
   }
-
-  // common scss variables  
 }

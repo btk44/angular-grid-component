@@ -3,6 +3,6 @@
         <app-grid [columnsSetupIn]="columnsSetup" [(dataRowsIn)]="setupDataRows"></app-grid>
     </section>
     <section>
-        <button (click)="onSave()">{{ saveText }}</button>
+        <button (click)="onSave()" [disabled]="saveBlocked">{{ saveText }}</button>
     </section>
 </div>

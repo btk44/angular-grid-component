@@ -1,6 +1,7 @@
 $fontSize: 14px;
 $primary-color: rgb(98, 98, 138);
 $primary-color-light: rgb(212, 212, 237);
+$disabled-color: rgb(105, 103, 103);
 $border: 1px solid $primary-color;
 $cellPadding: 10px;
 
@@ -154,12 +155,18 @@ $cellPadding: 10px;
     cursor: pointer;
 
     &:active {
-        color: $primary-color;
-        background-color: white;
+      color: $primary-color;
+      background-color: white;
     }
 
     &.mini{
-        min-width: 10px;
-        margin: 1px;
+      min-width: 10px;
+      margin: 1px;
+    }
+
+    &:disabled {
+      color:$disabled-color;
+      border-color: $disabled-color;
+      background-color: white;
     }
   }
