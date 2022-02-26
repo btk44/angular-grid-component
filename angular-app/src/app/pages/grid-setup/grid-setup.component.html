@@ -1,4 +1,8 @@
 <div class="grid-setup-container">
-    <app-grid [columnsSetupIn]="columnsSetup" [(dataRowsIn)]="setupDataRows"></app-grid>
-    <button (click)="onSave()">{{ saveText }}</button>
+    <section>
+        <app-grid [columnsSetupIn]="columnsSetup" [(dataRowsIn)]="setupDataRows"></app-grid>
+    </section>
+    <section>
+        <button (click)="onSave()">{{ saveText }}</button>
+    </section>
 </div>

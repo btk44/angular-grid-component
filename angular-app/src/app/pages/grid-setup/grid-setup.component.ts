@@ -18,10 +18,11 @@ export class GridSetupComponent implements OnInit {
 
   constructor() { 
     this.columnsSetup = [
-      { name: 'name', type: 'string', align: 'left', defaultValue: '_empty' },
-      { name: 'type', type: 'string', align: 'left', defaultValue: '_empty' },
-      { name: 'align', type: 'string', align: 'left', defaultValue: '_empty' },
-      { name: 'defaultValue', type: 'string', align: 'left', defaultValue: '_empty' }
+      { name: 'name', type: 'string', align: 'left', defaultValue: '_empty', order: 0 },
+      { name: 'type', type: 'string', align: 'left', defaultValue: '_empty', order: 1 },
+      { name: 'align', type: 'string', align: 'left', defaultValue: '_empty', order: 2 },
+      { name: 'defaultValue', type: 'string', align: 'left', defaultValue: '_empty', order: 3 },
+      { name: 'order', type: 'number', align: 'left', defaultValue: 0, order: 4 }
     ]
   }
 

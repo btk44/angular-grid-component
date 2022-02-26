@@ -3,4 +3,5 @@ export interface GridColumnSetup {
     type: 'number' | 'string' | 'boolean';
     align: 'left' | 'right' | 'center';
     defaultValue: unknown;
+    order: number;
 }

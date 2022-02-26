@@ -13,6 +13,7 @@ export class GridComponent implements OnInit {
   @Input() dataRowsIn: Array<object> = [];
   @Output() dataRowsInChange = new EventEmitter();
 
+  columnsSetupInOrdered: GridColumnSetup[] = [];
   addingModeOn: boolean = false;
   newRow: any = {};
   saveText = 'Save';
@@ -25,6 +26,7 @@ export class GridComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetNewRow();
+    this.columnsSetupInOrdered = this.columnsSetupIn.sort((a, b) => a.order - b.order);
   }
 
   onEscOrEnter(gridRowComponent: GridRowComponent){
@@ -49,19 +51,6 @@ export class GridComponent implements OnInit {
 
   onRowSelectionChange(): void {
     this.isAnyRowSelected = this.gridRowsComponents.some(grc => grc.isSelected);
-  }
-
-  onMoveRow(row: GridColumnSetup, direction: -1 | 1): void {
-    // let selectedRowIndex = this.columnsSetup.indexOf(row);
-    // let rowToSwapIndex = selectedRowIndex + direction;
-    // if(rowToSwapIndex < 0 || 
-    //    rowToSwapIndex >= this.columnsSetup.length){
-    //   return;
-    // }
-
-    // let tmpRow = this.columnsSetup[rowToSwapIndex];
-    // this.columnsSetup[rowToSwapIndex] = this.columnsSetup[selectedRowIndex];
-    // this.columnsSetup[selectedRowIndex] = tmpRow;
   }
 
   onCancelAddRow(): void {

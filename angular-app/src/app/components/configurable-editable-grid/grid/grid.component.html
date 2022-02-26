@@ -2,7 +2,7 @@
     <table>
         <tr>
             <th><input type="checkbox" [checked]="isCheckedAll" (change)="onSelectAll($event)"/></th>
-            <th *ngFor="let column of columnsSetupIn">{{ column.name }}</th>
+            <th *ngFor="let column of columnsSetupInOrdered">{{ column.name }}</th>
         </tr>
         <tr app-grid-row #gridrow
             *ngFor="let dataRow of dataRowsIn; let i=index" 
@@ -25,6 +25,4 @@
     <button (click)="onAddRow()">{{ addingModeOn ? 'Ok' : 'Add' }}</button>
     <button *ngIf="addingModeOn" (click)="onCancelAddRow()">{{ 'Cancel' }}</button>
     <button *ngIf="!addingModeOn" (click)="onRemoveRows()">Remove</button>
-    <button *ngIf="isAnyRowSelected">Move up</button>
-    <button *ngIf="isAnyRowSelected">Move down</button>
 </div>
