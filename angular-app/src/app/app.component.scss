@@ -140,3 +140,26 @@ $cellPadding: 10px;
       margin-left: 72px;
     }
   }
+
+
+  button {
+    border: $border;
+    border-color: $primary-color;
+    padding: $cellPadding;
+    margin: 10px 0 10px 10px;
+    background-color: $primary-color;
+    min-width: 80px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+
+    &:active {
+        color: $primary-color;
+        background-color: white;
+    }
+
+    &.mini{
+        min-width: 10px;
+        margin: 1px;
+    }
+  }
