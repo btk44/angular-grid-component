@@ -1,10 +1,10 @@
 <td><input type="checkbox" [(ngModel)]="isSelected" (change)="onSelectionChange()"/></td>
 <ng-container *ngFor="let column of columnsSetup">
     <ng-container *ngIf="!editModeOn" [ngSwitch]="column.type">
-        <td *ngSwitchCase="dataTypeNames.Boolean">
+        <td *ngSwitchCase="dataTypeNames.Boolean" [ngStyle]="{'text-align': column.align}">
             <input class="cell-input" type="checkbox" [checked]="dataRow[column.name]" disabled/>
         </td>
-        <td *ngSwitchDefault>{{ dataRow[column.name] }}</td>
+        <td *ngSwitchDefault [ngStyle]="{'text-align': column.align}">{{ dataRow[column.name] }}</td>
         <!-- add more if needed -->
     </ng-container>
     <td class="no-padding" *ngIf="editModeOn" [ngSwitch]="column.type">
